@@ -30,7 +30,6 @@ export default {
         await axios.get('https://api.github.com/repos/andrew221293/git-commit-history/commits').
         then(res => {
           if (!_.isEqual(this.commits, res.data)) {
-            console.log('agregar');
             this.commits = res.data
           }
         })

@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <v-toolbar app>
+      <v-toolbar-title>Home</v-toolbar-title>
+    </v-toolbar>
     <Home/>
   </div>
 </template>
