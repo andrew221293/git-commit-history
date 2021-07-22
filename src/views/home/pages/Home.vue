@@ -10,13 +10,14 @@
 </template>
 
 <script>
-import {getHistoryCommits} from '@/views/home/components/services/gitHubServices';
 import _ from 'lodash';
+import axios from 'axios';
 
 export default {
   name: 'Home',
   data(){
     return {
+
       commits: [],
     }
   },
@@ -24,18 +25,21 @@ export default {
     this.loadCommits();
   },
   methods: {
-    loadCommits() {
-      getHistoryCommits.
-      then(res => {
-        if (!_.isEqual(this.commits, res.data)) {
-          this.commits = res.data;
-        }
-      }).
-      catch(err => console.log(err)).
-      finally(()=> console.log('Finish'));
-      setTimeout(() => {
-        this.loadCommits();
-      },1000)
+   async loadCommits() {
+      try {
+        await axios.get('https://api.github.com/repos/andrew221293/git-commit-history/commits').
+        then(res => {
+          if (!_.isEqual(this.commits, res.data)) {
+            console.log('agregar');
+            this.commits = res.data
+          }
+        })
+      } catch (error) {
+        console.log(error)
+      }
+      setTimeout(()=> {
+        this.loadCommits()
+      },10000)
     },
   }
 }
