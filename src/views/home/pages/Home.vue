@@ -3,7 +3,7 @@
     <ul id="commits">
       <li v-for="(item, index) in items"
       :key="index">
-        {{ item.mensaje }}
+        Probando el API de gitHub
       </li>
     </ul>
   </div>
