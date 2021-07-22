@@ -23,6 +23,8 @@ export default {
   mounted() {
     window.setInterval(() => {
       getHistoryCommits.then(response => {
+        console.log(response.data.length);
+        console.log(this.commits.length);
         const equal = _.isEqual(this.commits, response.data)
         if (!equal) {
           console.log('Es hora de agregar');
@@ -31,8 +33,15 @@ export default {
       }).
       catch(err => console.log(err)).
       finally(()=> console.log('Finish'));
-    }, 1000)
+    }, 10000)
   },
+  created() {
+    getHistoryCommits.then(response => {
+      this.commits = response.data
+    }).
+    catch(err => console.log(err)).
+    finally(()=> console.log('Finish'));
+  }
 }
 </script>
 
