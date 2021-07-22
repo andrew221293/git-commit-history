@@ -20,8 +20,8 @@ export default {
       commits: [],
     }
   },
-  mounted() {
-    window.setInterval(() => {
+ async mounted() {
+    await window.setInterval(() => {
       getHistoryCommits.then(response => {
         console.log(response.data.length);
         console.log(this.commits.length);
@@ -33,7 +33,7 @@ export default {
       }).
       catch(err => console.log(err)).
       finally(()=> console.log('Finish'));
-    }, 10000)
+    }, 3000)
   },
   created() {
     getHistoryCommits.then(response => {
