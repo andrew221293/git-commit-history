@@ -20,27 +20,28 @@ export default {
       commits: [],
     }
   },
- async mounted() {
-    await window.setInterval(() => {
-      getHistoryCommits.then(response => {
-        console.log(response.data.length);
-        console.log(this.commits.length);
-        const equal = _.isEqual(this.commits, response.data)
-        if (!equal) {
-          console.log('Es hora de agregar');
-          this.commits = response.data
+  mounted() {
+    window.setInterval(() => {
+      this.loadCommits()
+    }, 10000)
+  },
+  destroyed() {
+    clearInterval()
+  },
+  created() {
+    this.loadCommits();
+  },
+  methods: {
+    async loadCommits() {
+      await getHistoryCommits.
+      then(res => {
+        if (!_.isEqual(this.commits, res.data)) {
+          this.commits = res.data;
         }
       }).
       catch(err => console.log(err)).
       finally(()=> console.log('Finish'));
-    }, 3000)
-  },
-  created() {
-    getHistoryCommits.then(response => {
-      this.commits = response.data
-    }).
-    catch(err => console.log(err)).
-    finally(()=> console.log('Finish'));
+    },
   }
 }
 </script>
