@@ -20,20 +20,12 @@ export default {
       commits: [],
     }
   },
-  mounted() {
-    window.setInterval(() => {
-      this.loadCommits()
-    }, 10000)
-  },
-  destroyed() {
-    clearInterval()
-  },
   created() {
     this.loadCommits();
   },
   methods: {
-    async loadCommits() {
-      await getHistoryCommits.
+    loadCommits() {
+      getHistoryCommits.
       then(res => {
         if (!_.isEqual(this.commits, res.data)) {
           this.commits = res.data;
@@ -41,6 +33,9 @@ export default {
       }).
       catch(err => console.log(err)).
       finally(()=> console.log('Finish'));
+      setTimeout(() => {
+        this.loadCommits();
+      },1000)
     },
   }
 }
