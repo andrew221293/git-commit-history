@@ -1,9 +1,9 @@
 <template>
   <div class="hello">
     <v-card v-for="(item, index) in commits" :key="index">
-      <v-card-title>{{ item.commit.author.name }}</v-card-title>
-      <v-card-subtitle>{{ item.commit.author.date }}</v-card-subtitle>
-      <v-card-text>{{ item.commit.message }}</v-card-text>
+      <v-card-title> {{ item.commit.message }} </v-card-title>
+      <v-card-subtitle>{{ item.commit.author.name }}</v-card-subtitle>
+      <v-card-text>{{ item.commit.author.date }}</v-card-text>
     </v-card>
   </div>
 </template>
@@ -29,7 +29,6 @@ export default {
         await axios.get('https://api.github.com/repos/andrew221293/git-commit-history/commits').
         then(res => {
           if (!_.isEqual(this.commits, res.data)) {
-            console.log(res.data);
             this.commits = res.data
           }
         })
@@ -38,7 +37,7 @@ export default {
       }
       setTimeout(()=> {
         this.loadCommits()
-      },10000)
+      },1000)
     },
   }
 }
