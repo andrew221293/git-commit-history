@@ -10,14 +10,14 @@
             v-model="group"
             active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item>
+          <v-list-item to="/">
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item to="/profile">
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
@@ -26,12 +26,29 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import VueRouter from 'vue-router';
+import Home from '@/views/home/pages/Home';
+import Profile from '@/views/home/pages/Profile';
+
+const router = new VueRouter({
+  routes: [
+    {path: '/', component: Home},
+    {path: '/profile', component: Profile},
+    {path: '*', redirect: '/' }
+  ]
+})
 export default {
   name: 'Toolbar',
+  router,
+  comments: {
+    Home,
+    Profile,
+  },
   data (){
     return {
       drawer: false,
