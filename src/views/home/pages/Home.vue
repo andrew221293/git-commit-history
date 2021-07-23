@@ -37,7 +37,7 @@ export default {
       }
       setTimeout(()=> {
         this.loadCommits()
-      },1000)
+      },100)
     },
   }
 }

@@ -23,6 +23,13 @@
             </v-list-item-icon>
             <v-list-item-title>Profile</v-list-item-title>
           </v-list-item>
+
+          <v-list-item to="/branches">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Branches</v-list-item-title>
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -34,11 +41,13 @@
 import VueRouter from 'vue-router';
 import Home from '@/views/home/pages/Home';
 import Profile from '@/views/home/pages/Profile';
+import Branches from '@/views/home/pages/Branches';
 
 const router = new VueRouter({
   routes: [
     {path: '/', component: Home},
     {path: '/profile', component: Profile},
+    {path: '/branches', component: Branches},
     {path: '*', redirect: '/' }
   ]
 })

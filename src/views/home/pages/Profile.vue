@@ -2,7 +2,7 @@
   <div>
     <v-card
         class="mx-auto"
-        max-width="344"
+        max-width="500"
     >
       <v-img
           :src="this.user.avatar_url"
@@ -39,7 +39,6 @@ export default {
       try {
         axios.get('https://api.github.com/users/andrew221293').
         then(res => {
-          console.log(res);
           this.user = res.data;
         })
       } catch (error) {
